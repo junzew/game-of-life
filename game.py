@@ -16,7 +16,7 @@ background = background.convert()  # prepare for faster blitting
 
 clock = pygame.time.Clock()
 mainloop = True
-FPS = 1 # desired framerate in frames per second. try out other values !
+FPS = 2 # desired framerate in frames per second. try out other values !
 playtime = 0.0
 
 r_pentomino = [[0,0,0,0,0,0,0,0],
