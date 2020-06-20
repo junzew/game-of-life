@@ -1,5 +1,5 @@
 # Conway's Game of Life
-In honor of [John Horton Conway](john horton conway), the inventor of [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life), who recently passed away due to COVID-19 complications.
+In honor of [John Horton Conway](https://en.wikipedia.org/wiki/John_Horton_Conway), the inventor of [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life), who recently passed away due to COVID-19 complications.
 
 ## Game Rules
 Given a board with *m* by *n* cells, each cell has an initial state *live* (1) or *dead* (0). Each cell interacts with its eight neighbors (horizontal, vertical, diagonal) using the following four rules:
