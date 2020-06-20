@@ -6,7 +6,6 @@ from __future__ import print_function, division
 #import pygame
 import pyjsdl as pygame
 
-
 def num_live_neighbours(i, j, board):
     """Calculate the number of live neighbour cells"""
     count = 0
@@ -81,7 +80,7 @@ background = background.convert()  # prepare for faster blitting
 
 
 clock = pygame.time.Clock()
-FPS = 1 # desired framerate in frames per second. try out other values !
+FPS = 2 #desired framerate in frames per second. try out other values !
 
 r_pentomino = [[0,0,0,0,0,0,0,0],
               [0,0,0,0,0,0,0,0],
@@ -119,7 +118,7 @@ glider = [[0,0,0,0,0,0,0,0,0,0],
          [0,0,0,0,0,0,0,0,0,0],
          ]
 
-board = glider
+board = acorn
 
 
 def render_my_game(board):
@@ -136,27 +135,11 @@ def render_my_game(board):
 
 
 def run():
-    mainloop = True
-    playtime = 0.0
     global board
-    while mainloop:
-        milliseconds = clock.tick(FPS) # do not go faster than this frame rate
+    milliseconds = clock.tick(FPS) # do not go faster than this frame rate
+    board = gameOfLife(board)
+    render_my_game(board)
 
-        playtime += milliseconds / 1000.0
-        # ----- event handler -----
-        for event in pygame.event.get():
-	    if event.type == pygame.QUIT:
-	        mainloop = False # pygame window closed by user
-	    elif event.type == pygame.KEYDOWN:
-	        if event.key == pygame.K_ESCAPE:
-		    mainloop = False # user pressed ESC
-
-        board = gameOfLife(board)
-        render_my_game(board)
-        #pygame.display.set_caption("Frame rate: {:0.2f} frames per second."
-	#    		           " Playtime: {:.2} seconds".format(
-	#    		           clock.get_fps(),playtime))
-        #pygame.display.flip()      # flip the screen like in a flipbook
-
-#run()
 pygame.display.setup(run)
+#run()
+

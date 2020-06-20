@@ -4753,11 +4753,11 @@ $pyjs['loaded_modules']['game'] = function (__mod_name__) {
 	$m['background']['fill']($p['tuple']([255, 255, 255]));
 	$m['background'] = $m['background']['convert']();
 	$m['clock'] = $m['pygame']['time']['Clock']();
-	$m['FPS'] = 1;
+	$m['FPS'] = 2;
 	$m['r_pentomino'] = $p['list']([$p['list']([0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 1, 1, 0, 0, 0, 0]), $p['list']([0, 1, 1, 0, 0, 0, 0, 0]), $p['list']([0, 0, 1, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0])]);
 	$m['acorn'] = $p['list']([$p['list']([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 1, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 1, 0, 0, 0, 0, 0]), $p['list']([0, 1, 1, 0, 0, 1, 1, 1, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])]);
 	$m['glider'] = $p['list']([$p['list']([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 1, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 1, 0, 0, 0, 0, 0, 0]), $p['list']([0, 1, 1, 1, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), $p['list']([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])]);
-	$m['board'] = $m['glider'];
+	$m['board'] = $m['acorn'];
 	$m['render_my_game'] = function(board) {
 		var $iter5_nextval,$add31,$sub26,$sub27,$sub25,$iter5_idx,$sub28,$mul7,$iter5_iter,$iter4_type,$mul6,$iter5_type,$iter4_iter,$add29,$mul4,$iter5_array,$div4,$mul8,$div2,$div3,$mul5,$div1,$mul3,$mul2,$mul1,i,$iter4_nextval,$add30,j,m,n,$iter4_idx,$add32,$iter4_array;
 		$m['screen']['blit']($m['background'], $p['tuple']([0, 0]));
@@ -4797,30 +4797,10 @@ $pyjs['loaded_modules']['game'] = function (__mod_name__) {
 	$m['render_my_game']['__bind_type__'] = 0;
 	$m['render_my_game']['__args__'] = [null,null,['board']];
 	$m['run'] = function() {
-		var $iter6_idx,$iter6_type,mainloop,$add34,$iter6_array,$add33,playtime,$iter6_iter,$iter6_nextval,$div6,event,milliseconds,$div5;
-		mainloop = true;
-		playtime = 0.0;
-		while ($p['bool'](mainloop)) {
-			milliseconds = $m['clock']['tick']($m['FPS']);
-			playtime = $p['__op_add']($add33=playtime,$add34=(typeof ($div5=milliseconds)==typeof ($div6=1000.0) && typeof $div5=='number' && $div6 !== 0?
-				$div5/$div6:
-				$p['op_truediv']($div5,$div6)));
-			$iter6_iter = $m['pygame']['event']['get']();
-			$iter6_nextval=$p['__iter_prepare']($iter6_iter,false);
-			while (typeof($p['__wrapped_next']($iter6_nextval)['$nextval']) != 'undefined') {
-				event = $iter6_nextval['$nextval'];
-				if ($p['bool']($p['op_eq']($p['getattr'](event, 'type'), $p['getattr']($m['pygame'], 'QUIT')))) {
-					mainloop = false;
-				}
-				else if ($p['bool']($p['op_eq']($p['getattr'](event, 'type'), $p['getattr']($m['pygame'], 'KEYDOWN')))) {
-					if ($p['bool']($p['op_eq']($p['getattr'](event, 'key'), $p['getattr']($m['pygame'], 'K_ESCAPE')))) {
-						mainloop = false;
-					}
-				}
-			}
-			$m['board'] = $m['gameOfLife']($m['board']);
-			$m['render_my_game']($m['board']);
-		}
+		var milliseconds;
+		milliseconds = $m['clock']['tick']($m['FPS']);
+		$m['board'] = $m['gameOfLife']($m['board']);
+		$m['render_my_game']($m['board']);
 		return null;
 	};
 	$m['run']['__name__'] = 'run';
